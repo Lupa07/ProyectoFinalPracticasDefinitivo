@@ -1,0 +1,31 @@
+.contenedor-principal {
+  height: 100%;
+  overflow: hidden;
+
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  border-radius: 5px;
+  padding: 5px 10px;
+  overflow-y: auto;
+
+  .contenedor-cliente {
+    padding: 5px;
+
+    overflow-y: auto;
+    overflow-x: hidden;
+    
+    .activo{
+      display: grid;
+      grid-template-columns: 1fr 35px;
+    }
+  }
+}
+.buscar {
+  display: flex;
+  flex-direction: row-reverse;
+
+  .boton_Buscar {
+    width: 100%;
+  }
+}

@@ -1,0 +1,123 @@
+<div class="contenedor-principal">
+  <div class="contenedor-cliente">
+    <label for="cliente">Numero Cliente:</label>
+    <div class="input-group mb-3">
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Numero Cliente"
+        aria-label="Recipient's username"
+        aria-describedby="basic-addon2"
+        [(ngModel)]="numCliente"
+        
+      />
+      <div class="input-group-append">
+        <button
+          class="btn btn-outline-danger vaciar"
+          type="button"
+          (click)="numCliente = ''"
+        >
+          X
+        </button>
+      </div>
+    </div>
+    <label for="cliente">Alias Cliente:</label>
+
+    <div class="input-group mb-3">
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Alias Cliente"
+        aria-label="Recipient's username"
+        aria-describedby="basic-addon2"
+        [(ngModel)]="alias"
+        
+      />
+      <div class="input-group-append">
+        <button
+          class="btn btn-outline-danger vaciar"
+          type="button"
+          (click)="alias = ''"
+        >
+          X
+        </button>
+      </div>
+    </div>
+    <label for="cliente">Provincia:</label>
+
+    <div class="input-group mb-3">
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Provincia"
+        aria-label="Recipient's username"
+        aria-describedby="basic-addon2"
+        [(ngModel)]="provincia"
+       
+      />
+      <div class="input-group-append">
+        <button
+          class="btn btn-outline-danger vaciar"
+          type="button"
+          (click)="provincia = ''"
+        >
+          X
+        </button>
+      </div>
+    </div>
+    <label for="cliente">Documento:</label>
+
+    <div class="input-group mb-3">
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Documento Cliente"
+        aria-label="Recipient's username"
+        aria-describedby="basic-addon2"
+        [(ngModel)]="documento"
+        #doc
+      />
+      <div class="input-group-append">
+        <button
+          class="btn btn-outline-danger vaciar"
+          type="button"
+          (click)="documento = ''"
+        >
+          X
+        </button>
+      </div>
+    </div>
+    
+    <label for="cliente">Activo:</label>
+    <div class="activo form-check form-switch">
+      <input
+        class="form-check-input"
+        type="checkbox"
+        id="flexSwitchCheckChecked"
+        checked
+        [(ngModel)]="activoB"
+      />
+      <div class="input-group-append">
+        <button
+          class="btn btn-outline-danger vaciar"
+          type="button"
+          (click)="recargarDatos() "
+        >
+          X
+        </button>
+      </div>
+    </div>
+    
+  
+  
+</div>
+  <div class="buscar">
+    <button
+      type="submit"
+      class="btn btn-primary btn-lg boton_Buscar"
+      (click)="buscar()"
+    >
+      Buscar
+    </button>
+  </div>
+</div>
