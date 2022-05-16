@@ -204,42 +204,88 @@
 
   <div class="contenedor-tabla">
     <div class="tabla">
-      <table class="contenido-tabla">
-        <thead>
-          <tr class="cabecera-tabla">
-            <th class="numero">Numero</th>
-            <th class="alias">Alias</th>
-            <th class="direccion">Direccion</th>
+      <tabset>
+        <tab heading="TABLA" id="tab1">
+          <table class="contenido-tabla">
+            <tr class="cabecera-tabla">
+              <th class="numero">Numero</th>
+              <th class="alias">Alias</th>
+              <th class="direccion">Direccion</th>
 
-            <th class="provincia">Provincia</th>
-            <th class="telefono">Telefono</th>
-            <th class="comercial">Comercial</th>
-            <th class="documento">Documento</th>
-            <th class="email">Email</th>
-          </tr>
-        </thead>
-        <tbody id="cuerpo_tabla">
-          <tr
-            *ngFor="
-              let item of miServ.clientes
-                | slice
-                  : (currentPage - 1) * numero_elementos
-                  : currentPage * numero_elementos;
-              let x = index
-            "
-            class="clientes-api"
-            (click)="mostrarSeleccionado(item)"
-          >
-            <td class="centro">{{ item.numero }}</td>
-            <td class="text-truncate">{{ item.alias }}</td>
-            <td class="text-truncate">{{ item.direccion }}</td>
-            <td class="text-truncate">{{ item.provincia }}</td>
-            <td class="text-truncate">{{ item.telefono }}</td>
-            <td class="text-truncate">{{ item.comercial }}</td>
-            <td class="text-truncate">{{ item.documento }}</td>
-            <td class="text-truncate">{{ item.email }}</td>
-          </tr>
-        </tbody>
+              <th class="provincia">Provincia</th>
+              <th class="telefono">Telefono</th>
+              <th class="comercial">Comercial</th>
+              <th class="documento">Documento</th>
+              <th class="email">Email</th>
+            </tr>
+
+            <tr
+              *ngFor="
+                let item of miServ.clientes
+                  | slice
+                    : (currentPage - 1) * numero_elementos
+                    : currentPage * numero_elementos;
+                let x = index
+              "
+              class="clientes-api"
+              (click)="mostrarSeleccionado(item)"
+            >
+              <td class="centro">{{ item.numero }}</td>
+              <td class="text-truncate">{{ item.alias }}</td>
+              <td class="text-truncate">{{ item.direccion }}</td>
+              <td class="text-truncate">{{ item.provincia }}</td>
+              <td class="text-truncate">{{ item.telefono }}</td>
+              <td class="text-truncate">{{ item.comercial }}</td>
+              <td class="text-truncate">{{ item.documento }}</td>
+              <td class="text-truncate">{{ item.email }}</td>
+            </tr>
+          </table>
+        </tab>
+        <tab heading="TARJETAS">
+          <div class="tarjetas">
+            <div
+              class="tarjeta"
+              *ngFor="
+                let item of miServ.clientes
+                  | slice
+                    : (currentPage - 1) * numero_elementos
+                    : currentPage * numero_elementos;
+                let x = index
+              "
+              
+              (click)="mostrarSeleccionado(item)"
+            >
+              <div class="seccion-arriba">
+                <h3>{{ item.numero }}</h3>
+              </div>
+              <div class="seccion-medio">
+                <h5 class="alias text-truncate">{{ item.alias }}</h5>
+              </div>
+              <div class="seccion-abajo">
+                <div class="comercial">
+                  <h6>Comercial: {{ item.comercial }}</h6>
+                </div>
+                <div class="poblacion">
+                  <h6>Poblacion: {{ item.provincia }}</h6>
+                </div>
+                <div class="telefono">
+                  <h6>
+                    Telefono:
+                    {{ item.telefono == "" ? "" : item.telefono }}
+                  </h6>
+                </div>
+
+                <div class="correo">
+                  <h6 class="text-truncate">E-mail: {{ item.email }}</h6>
+                </div>
+              </div>
+            </div>
+          </div></tab
+        >
+      </tabset>
+
+      <table class="contenido-tabla">
+        <tbody id="cuerpo_tabla"></tbody>
       </table>
     </div>
     <div class="paginacion">

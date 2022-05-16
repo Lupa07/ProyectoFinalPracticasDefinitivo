@@ -10,6 +10,7 @@ import { FiltrosComponent } from './componenetes/filtros/filtros.component';
 import { MostrarDatosComponent } from './componenetes/mostrar-datos/mostrar-datos.component';
 import { DatosService } from './services/datos.service';
 import { PaginationModule } from 'ngx-bootstrap/pagination';
+import { TabsModule } from 'ngx-bootstrap/tabs';
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import { PaginationModule } from 'ngx-bootstrap/pagination';
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    PaginationModule.forRoot()
+    PaginationModule.forRoot(),
+    TabsModule.forRoot()
   ],
   providers: [DatosService],
   bootstrap: [AppComponent]
