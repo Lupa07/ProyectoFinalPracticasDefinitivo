@@ -1,5 +1,3 @@
-import { ThisReceiver } from '@angular/compiler';
-import { LEADING_TRIVIA_CHARS } from '@angular/compiler/src/render3/view/template';
 import { Component, HostListener, OnInit } from '@angular/core';
 import { Cliente } from 'src/app/models/cliente.model';
 import { DatosService } from 'src/app/services/datos.service';
@@ -7,10 +5,10 @@ import { DatosService } from 'src/app/services/datos.service';
 @Component({
   selector: 'app-mostrar-datos',
   templateUrl: './mostrar-datos.component.html',
-  styleUrls: ['./mostrar-datos.component.scss']
+  styleUrls: ['./mostrar-datos.component.scss'],
 })
 export class MostrarDatosComponent implements OnInit {
-  datos: any[] = []
+  datos: any[] = [];
   datoSeleccionado: any = [];
   startItem = 0;
   endItem = 15;
@@ -34,39 +32,35 @@ export class MostrarDatosComponent implements OnInit {
 
   status: string = '';
 
-
   constructor(public miServ: DatosService) {
-
     miServ.getCliente({}).subscribe(
       (data) => {
         console.log(data);
         this.miServ.clientes = data.data;
         this.ordenarPorId();
 
-        this.datoSeleccionado = miServ.clientes[0]
+        this.datoSeleccionado = miServ.clientes[0];
       },
-      (error) => { alert("Los datos no han podido cargarse"); }
-
-    )
-
+      (error) => {
+        alert('Los datos no han podido cargarse');
+      }
+    );
   }
   eliminar() {
     let usuarioAborrar = {
-      id: this.datoSeleccionado.idcliente
-    }
-    console.log(this.datoSeleccionado.idcliente)
+      id: this.datoSeleccionado.idcliente,
+    };
+    console.log(this.datoSeleccionado.idcliente);
     this.miServ.deleteCliente(usuarioAborrar).subscribe(
-      (data) => { this.recargarDatos() },
+      (data) => {
+        this.recargarDatos();
+      },
       (error) => {
         alert(error.mensaje);
       }
-    )
-
-
+    );
   }
   modificar() {
-    
-    
     let datosInput = {
       idcliente: this.datoSeleccionado.idcliente,
 
@@ -82,18 +76,19 @@ export class MostrarDatosComponent implements OnInit {
       telefono: this.telefono,
       comercial: this.comercial,
       notas: this.notas,
-      activo: this.activob
-    }
-    console.log('cliente modificado')
-   console.log('datos de datosInput',datosInput)
+      activo: this.activob,
+    };
     this.miServ.modificarCliente(datosInput).subscribe(
-      (data) => {this.reiniciarValores(), this.recargarDatos()  },
-      (error) => { alert("no ha funcionado") }
-    )
-    
+      (data) => {
+        this.reiniciarValores(), this.recargarDatos();
+      },
+      (error) => {
+        alert('no ha funcionado');
+      }
+    );
   }
 
-  reiniciarValores(){
+  reiniciarValores() {
     this.numCliente = this.datoSeleccionado.numero;
     this.alias = this.datoSeleccionado.alias;
     this.nombre = this.datoSeleccionado.nombre;
@@ -111,7 +106,6 @@ export class MostrarDatosComponent implements OnInit {
   }
   crear() {
     let datosInput = {
-
       numero: this.numCliente,
       alias: this.alias,
       nombre: this.nombre,
@@ -125,15 +119,17 @@ export class MostrarDatosComponent implements OnInit {
       telefono: this.telefono,
       comercial: this.comercial,
       notas: this.notas,
-      activo: this.activob ? 1 : 0
-    }
+      activo: this.activob ? 1 : 0,
+    };
 
     this.miServ.crearUsuario(datosInput).subscribe(
-      (data) => { this.recargarDatos() },
-      (error) => { alert(error.mensaje) }
-    )
-
-
+      (data) => {
+        this.recargarDatos();
+      },
+      (error) => {
+        alert(error.mensaje);
+      }
+    );
   }
 
   recargarDatos() {
@@ -142,8 +138,8 @@ export class MostrarDatosComponent implements OnInit {
       activo: '',
       provincia: '',
       documento: '',
-      codigo: ''
-    }
+      codigo: '',
+    };
     this.miServ.getCliente(filtros).subscribe(
       (data) => {
         console.log(data);
@@ -151,11 +147,12 @@ export class MostrarDatosComponent implements OnInit {
         this.miServ.clientes = data.data;
 
         this.ordenarPorId();
-        this.datoSeleccionado = this.miServ.clientes[0]
+        this.datoSeleccionado = this.miServ.clientes[0];
       },
-      (error) => { alert("Los datos no han podido cargarse"); }
-
-    )
+      (error) => {
+        alert('Los datos no han podido cargarse');
+      }
+    );
   }
 
   totalItems: number = 0;
@@ -171,19 +168,14 @@ export class MostrarDatosComponent implements OnInit {
     });
   }
   mostrarSeleccionado(item: Cliente) {
-
     this.datoSeleccionado = item;
     this.reiniciarValores();
-    console.log("cliente seleccionado",this.datoSeleccionado);
-
+    console.log('cliente seleccionado', this.datoSeleccionado);
   }
 
-
   ngOnInit(): void {
-
-    this.totalItems = this.miServ.clientes.length
+    this.totalItems = this.miServ.clientes.length;
     this.recalcularFilas();
-
   }
   @HostListener('window:resize', ['$event'])
   onResize(event: any) {
@@ -199,26 +191,12 @@ export class MostrarDatosComponent implements OnInit {
     this.cambiar_pagina(1, numero_pag);
   }
   cambiar_pagina(pag: number, items: number) {
-
     this.numero_elementos = items;
-    setTimeout(() => this.currentPage = pag, 100)
+    setTimeout(() => (this.currentPage = pag), 100);
   }
   limpiar() {
-    this.datoSeleccionado = {}
+    this.datoSeleccionado = {};
   }
 
-  bandera() {
-
-    if (this.activob == true) {
-
-    }
-  }
-
-
-
-
-
-
+  
 }
-
-

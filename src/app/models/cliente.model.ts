@@ -1,5 +1,3 @@
-import { DatosService } from "../services/datos.service";
-
 export class Cliente{
     public idcliente:number;
     public activo:string;
